@@ -14,14 +14,21 @@ app = Flask(__name__)
 def index():
     return render_template('index.html') #render template function from flask (note where my templates/index file is in the directory!)
 
+
 #another route view (function)
 @app.route("/about")
 def about():
     return render_template('about.html')
 
+
 @app.route("/contact")
 def contact():
     return render_template('contact.html')
+
+
+@app.route("/careers")
+def careers():
+    return render_template('careers.html')
 
 # if name == main then run app with the following arguments:
 if __name__ == "__main__":
