@@ -1,6 +1,6 @@
 import os # import os from python library
 
-from flask import Flask #import flask class
+from flask import Flask, render_template #import flask class
 
 # creat an instance of the class and store it in variable app. 
 # () = name of the applications module. We just want one so use the built in python variable __name__.
@@ -8,10 +8,20 @@ from flask import Flask #import flask class
 
 app = Flask(__name__)
 
-
+# render_template allows python to render contents of the HTML files and render to the screen
+# in html file the format for the <a> MUST be Jinja format EXACTLY '
 @app.route("/") # decorator (@) wraps the function. when we direct to the route directry (/), flask triggers the index function below
 def index():
-    return "Hello, World"
+    return render_template('index.html') #render template function from flask (note where my templates/index file is in the directory!)
+
+#another route view (function)
+@app.route("/about")
+def about():
+    return render_template('about.html')
+
+@app.route("/contact")
+def contact():
+    return render_template('contact.html')
 
 # if name == main then run app with the following arguments:
 if __name__ == "__main__":
