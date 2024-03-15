@@ -1,6 +1,6 @@
 import os # import os from python library
 import json
-from flask import Flask, render_template #import flask class
+from flask import Flask, render_template, request #import flask class (request is finding out what method (in the contact form) we used 
 
 # creat an instance of the class and store it in variable app. 
 # () = name of the applications module. We just want one so use the built in python variable __name__.
@@ -32,11 +32,14 @@ def about_member(member_name):
         for obj in data:
             if obj["url"] == member_name:
                 member = obj
-    return "<h1>" + member["name"]
+    return render_template("member.html", member = member) # first member here is variable being passed through html file, second is the object created above
 
 
-@app.route("/contact")
+@app.route("/contact", methods = ["GET", "POST"]) # methods tells flask we are handling a post request too (for form)
 def contact():
+    if request.method == "POST":
+        print(request.form.get("name")) # this one would give us none if there wasn't a name
+        print(request.form["email"]) # this one would give an exception if there wasn't an email
     return render_template('contact.html', page_title="Contact")
 
 
