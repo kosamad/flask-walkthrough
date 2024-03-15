@@ -1,5 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
+
+
+<!-- endfor is required to end for loop above it -->
+
+<!-- {% for number in list_of_numbers %}
+    <p>{{ number }}</p>
+{% endfor %}  -->
+
+{{ company[1]["name"] }}
+
 <!-- info comes from the page title variable in run.py -->
 <h2>{{ page_title }}</h2> 
 <p>

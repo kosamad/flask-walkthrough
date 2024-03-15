@@ -1,5 +1,5 @@
 import os # import os from python library
-
+import json
 from flask import Flask, render_template #import flask class
 
 # creat an instance of the class and store it in variable app. 
@@ -18,8 +18,10 @@ def index():
 #another route view (function)
 @app.route("/about")
 def about():
-    return render_template('about.html', page_title="About")
-
+    data = [] #initialise empty array. The next line opens the json file using a with block, r = readonly
+    with open("data/company.json", "r") as json_data: 
+        data = json.load(json_data) # sets empty data list to = the parsed json data.
+    return render_template('about.html', page_title="About", company = data) # The second argument uses server side code to set front end data (page title), third is assigning a new varibale company which = the data list from Json
 
 @app.route("/contact")
 def contact():
