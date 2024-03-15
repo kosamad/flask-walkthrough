@@ -4,6 +4,23 @@
 
 <div class="row">
     <div class="col-lg-8 col-md-10 mx-auto">
+
+        <!-- this returns the message we've created in the flash function (backend) and store it in a variable called messages. -->
+        {% with messages = get_flashed_messages() %}
+        <!-- check if there are messages to retrieve -->
+            {% if messages %}
+              <!-- display message -->
+             <ul class="flashes">
+                <!-- iterate through messages as it's possible to get more than 1 on one page -->
+                   {% for message in messages %}
+                    <li>{{ message }}</li>
+                   {% endfor %}
+             </ul>
+
+
+             {% endif %}
+        {% endwith %}
+
         <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
         <form method="POST" name="sentMessage" id="contactForm" novalidate>
             <div class="control-group">
